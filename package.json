@@ -1,6 +1,6 @@
 {
   "name": "timexe",
-  "version": "0.9.3",
+  "version": "0.9.5",
   "description": "Yet another cron clone – but this one is better :o)  - new improved syntax – milliseconds resolution – both for node JS and browser",
   "main": "timexe.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/paragi/timexe"
+    "url": "git+https://github.com/paragi/timexe.git"
   },
   "keywords": [
     "poller",
@@ -25,16 +25,14 @@
     "timer",
     "node"
   ],
-  "author": {
-    "name": "Simon Riget @Paragi"
-  },
+  "author": "Simon Riget @Paragi",
   "bugs": {
     "url": "https://github.com/paragi/timexe/issues"
   },
   "maintainers": [
-    {
-      "name": "paragi",
-      "email": "simon.riget@gmail.com"
-    }
-  ]
+    "paragi <simon.riget@gmail.com>"
+  ],
+  "tonicExampleFilename": "example.js",
+  "homepage": "https://github.com/paragi/timexe#readme",
+  "license": "MIT"
 }
