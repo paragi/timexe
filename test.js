@@ -4,17 +4,17 @@
 // For node JS
 if(typeof process !== 'undefined'){
   try {
-    var texe=require('texe');
+    var timexe=require('timexe');
   }
   catch(e){
-    var texe=require('./texe');
+    var timexe=require('./timexe');
   }
 
 // For HTML
 }else{
-  if(typeof texe === 'undefined'){
-    console.error("Please include the texe.js script");
-    console.error('<script type="text/JavaScript" src="texe.js"></script>');
+  if(typeof timexe === 'undefined'){
+    console.error("Please include the timexe.js script");
+    console.error('<script type="text/JavaScript" src="timexe.js"></script>');
   }
 }
 
@@ -26,7 +26,7 @@ function timerIn(ms,action,p){
   ta.setMilliseconds(ta.getMilliseconds()+ms);
   ta.getTime();
   var str= Math.floor(ta.getTime()/1000) + "." + ("00" + Math.round(ta.getTime()%1000)).slice(-3);
-  var res=texe("@" + str,action,p);
+  var res=timexe("@" + str,action,p);
 }
 
 /*============================================================================*\
@@ -58,11 +58,11 @@ function test1(){
     }
   }
 
-  var res=texe("* * * * * * /50",action,":c)");
+  var res=timexe("* * * * * * /50",action,":c)");
 
   // deactivate after 5 sec.
   var fid=res.id;
-  timerIn(5155,texe.remove,fid);
+  timerIn(5155,timexe.remove,fid);
 }
 
 /*============================================================================*\
@@ -168,7 +168,7 @@ function test2(){
     // Run test cases
     html+="<table>";
     for(var i=0; i<testCase.length; i++){
-      var result=texe.nextTime(testCase[i][0],testCase[i][4],testCase[i][1]);
+      var result=timexe.nextTime(testCase[i][0],testCase[i][4],testCase[i][1]);
       jt=( new Date(result.time*1000));
 
       html+="<tr><td>" + i +"</td>";
@@ -192,7 +192,7 @@ function test2(){
    // For Node JS
    }else{
     for(var i=0; i<testCase.length; i++){
-      var result=texe.nextTime(testCase[i][0],testCase[i][4],testCase[i][1]+of);
+      var result=timexe.nextTime(testCase[i][0],testCase[i][4],testCase[i][1]+of);
       console.log(
         i
        ,testCase[i][0]
@@ -209,10 +209,10 @@ function test2(){
 \*============================================================================*/
 function test3(){
   // Test shortened timeout
-  var tmp=texe.maxTimerDelay;
-  texe.maxTimerDelay=1000;
+  var tmp=timexe.maxTimerDelay;
+  timexe.maxTimerDelay=1000;
   var now=(new Date()).getTime()/1000;
-  texe("@"+(now+5.2),defTest,now+5.2);
+  timexe("@"+(now+5.2),defTest,now+5.2);
 
   function defTest(p){
     var now=(new Date()).getTime();
@@ -225,7 +225,7 @@ function test3(){
         document.getElementById('test-3-res').innerHTML='Ok';
       else
         document.getElementById('test-3-res').innerHTML='deviation too big';
-      texe.maxTimerDelay=tmp;
+      timexe.maxTimerDelay=tmp;
 
     // For Node JS
     }else{
@@ -242,7 +242,7 @@ function test3(){
   List active timers
 \*============================================================================*/
 function list(){
-  var list=texe.get();
+  var list=timexe.get();
   var html="<table>";
   for(var i in list){
     html+="<tr><td> "+i+" </td><td><table>";

@@ -1,4 +1,4 @@
-# Chronos - Timer and scheduler
+# Timexe - Timer and scheduler
 ## For node JS or javascript.
 
 ### Contributor wanted
@@ -23,7 +23,7 @@ It seems that execution is defered somewhat during process load.
 To add a timed job every day at noon:
 
 ```javascript
-chronos.add(”* * * 12”, function(){console.log(“hello - it's noon again”)});
+timexe(”* * * 12”, function(){console.log(“hello - it's noon again”)});
 ```
 
 ## Time expression Syntax
@@ -80,7 +80,7 @@ Unspecified minor fields are assumed to have the lowest possible value
 
 ## API
 ---
-##### chronos.add(timeExpression, callBack [,parameterToCallBack])
+##### timexe(timeExpression, callBack [,parameterToCallBack])
 
 Returns a result object:
 ```
@@ -92,8 +92,8 @@ Returns a result object:
 ```
 
 
-##### chronos.remove(id)
-where id is the value returned from chronos.add
+##### timexe.remove(id)
+where id is the value returned from timexeadd
 
 Returns a result object:
 ```
@@ -104,18 +104,18 @@ Returns a result object:
 ```
 
 
-##### chronos.get([id])
-where the optional id is the value returned from chronos.add
+##### timexe.get([id])
+where the optional id is the value returned from timexeadd
 
 Returnes either a chronos timer object if id is given, or an array of all active timer objects.
 
 
 ### Settings
-##### chronos.timeResolution (integer)
+##### timexe.timeResolution (integer)
 This is the minimum time resolution for an expression. Minimum value is 1 ms. default is 2 ms.
 This should be more the the execution time and delays do to load, of the intepreter. 
 
-##### chronos.maxTimerDelay (integer)
+##### timexe.maxTimerDelay (integer)
 Maximum run time of a setTimeout call. Some javascripts engines cant handle more then 32 bit = 0x7FFFFFF. thats about 28 days. default is 86400000 = 1 day.
 When this time have elapsed, the timer event are reevaluated.
 
@@ -124,17 +124,17 @@ When this time have elapsed, the timer event are reevaluated.
 ---
 #### Install
 ```bash
-$ npm install e-chron
+$ npm install timexe
 ```
 #### Use
 ```js
-var chronos = require('chronos');
+var timexe = require('timexe');
 
 // Add
-var res1=chronos.add(”* * * 12”, function(){console.log(“hello wolrd”)});
+var res1=timexe(”* * * 12”, function(){console.log(“hello wolrd”)});
 
 // Remove
-var res2=chronos.remove(res1.id);
+var res2=timexe.remove(res1.id);
 ```
 
 
@@ -145,12 +145,12 @@ Copy files to folder.
 
 #### Use
 ```html
-<script type="text/JavaScript" src="chronos.js"></script>
+<script type="text/JavaScript" src="timexe.js"></script>
 <script>
 // Add
-var res1=chronos.add(”* * * 12”, function(){alert(“hello wolrd”)});
+var res1=timexe(”* * * 12”, function(){alert(“hello wolrd”)});
 
 // Remove
-var res2=chronos.remove(res1.id);
+var res2=timexe.remove(res1.id);
 </script>
 ```

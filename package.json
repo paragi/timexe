@@ -1,14 +1,14 @@
 {
-  "name": "texe",
+  "name": "timexe",
   "version": "0.9.3",
   "description": "Yet another cron clone – but this one is better :o)  - new improved syntax – milliseconds resolution – both for node JS and browser",
-  "main": "texe.js",
+  "main": "timexe.js",
   "scripts": {
     "test": "test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/paragi/texe"
+    "url": "https://github.com/paragi/timexe"
   },
   "keywords": [
     "poller",
@@ -29,7 +29,7 @@
     "name": "Simon Riget @Paragi"
   },
   "bugs": {
-    "url": "https://github.com/paragi/texe/issues"
+    "url": "https://github.com/paragi/timexe/issues"
   },
   "maintainers": [
     {

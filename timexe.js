@@ -1,7 +1,7 @@
 /*============================================================================*\
-Texe - Timed execution for node JS.
+timexe - Timed execution for node JS.
 
-syntax: texe(<time expression>, <call back>, <parameter to call back>);
+syntax: timexe(<time expression>, <call back>, <parameter to call back>);
 
 
 Call with a time expression string and a callback function. 
@@ -24,7 +24,7 @@ To increase precision, you would have to rewrite the function with some form of 
 To add a timed job every day at noon:
 
 [code]
-texe(”* * * 12”,function(){console.log(“hello wolrd”)});
+timexe(”* * * 12”,function(){console.log(“hello wolrd”)});
 [/code]
 
 Each field can be substituted with a wild card “*” , have flags, ranges or a set of values.
@@ -86,7 +86,7 @@ Examples:
 
 Functions:
 
-texe(<time expression>, <call back>, <parameter to call back>);
+timexe(<time expression>, <call back>, <parameter to call back>);
 
 Add a single shot or reoccurring job
 
@@ -97,7 +97,7 @@ error: 	<an failure explanation> or null
 id:	<integer used to identify the timer>
 
 
-texe.remove(id);
+timexe.remove(id);
 Removes the job
 
 Returns an object:
@@ -113,19 +113,19 @@ id:	<integer used to identify the timer>
 /*============================================================================*\
                              Public functions
 \*============================================================================*/
-var texe = function(timex,action,param){
-  return texe.add(timex,action,param);
+var timexe = function(timex,action,param){
+  return timexe.add(timex,action,param);
 };
 // For node JS
-if(typeof module !== 'undefined') module.exports = exports = texe;
+if(typeof module !== 'undefined') module.exports = exports = timexe;
 
 // Settings
-texe.file='';   // File to store permanent time expressions
-texe.timeResolution=2; // Min 1 ms. This is the minimum time between execution.
-texe.maxTimerDelay=86400000 // some javascripts engines cant handle more then 32 bit 0x7FFFFFF - about 28 days
+timexe.file='';   // File to store permanent time expressions
+timexe.timeResolution=2; // Min 1 ms. This is the minimum time between execution.
+timexe.maxTimerDelay=86400000 // some javascripts engines cant handle more then 32 bit 0x7FFFFFF - about 28 days
 
 // Globals
-texe.list={};
+timexe.list={};
 
 // Job object
 //    timex:  Time expression
@@ -149,7 +149,7 @@ texe.list={};
     p: parameters parsed action function
 
 \*============================================================================*/
-texe.add=function(timex,action,param){
+timexe.add=function(timex,action,param){
   // validate parameters
   if(typeof timex !== 'string') 
     return {"result":"failed","error":"time expression not a string","id":""};
@@ -157,35 +157,35 @@ texe.add=function(timex,action,param){
     return {"result":"failed","error":"Action is not a function","id":""};
 
   // Add to job entry to list;
-  texe.list[texe.nextId]={}; 
-  texe.list[texe.nextId].timex=timex;
-  texe.list[texe.nextId].action=action;
-  texe.list[texe.nextId].param=param;
+  timexe.list[timexe.nextId]={}; 
+  timexe.list[timexe.nextId].timex=timex;
+  timexe.list[timexe.nextId].action=action;
+  timexe.list[timexe.nextId].param=param;
 
   // Define the timeout Shortened flag
-  texe.list[texe.nextId].timeoutShortened=false;
+  timexe.list[timexe.nextId].timeoutShortened=false;
 
   // Start timed execution
-  var error=texe._start(texe.nextId);
+  var error=timexe._start(timexe.nextId);
   if(error.length>0) return {"result":"failed","error":error,"id":""};
 
   // Add to static file 
-  if(typeof process === 'object' && texe.file.length>0){
+  if(typeof process === 'object' && timexe.file.length>0){
     // Look for match in file
     // concatanate file....
   }
 
-  return {"result":"ok","error":"","id":texe.nextId++};
+  return {"result":"ok","error":"","id":timexe.nextId++};
 } 
 
 
-texe.remove=function(id){
-  if(typeof texe.list[id] !== "undefined"){
-    clearTimeout(texe.list[id].timer);
-    delete texe.list[id];
+timexe.remove=function(id){
+  if(typeof timexe.list[id] !== "undefined"){
+    clearTimeout(timexe.list[id].timer);
+    delete timexe.list[id];
 
     // Delete from static file 
-    if(typeof process === 'object' && texe.file.length>0){
+    if(typeof process === 'object' && timexe.file.length>0){
       // Look for match in file
       // splice file....
     }
@@ -193,16 +193,16 @@ texe.remove=function(id){
   return;
 }
 
-texe.get=function(id){
-  if(typeof id ==='number') return texe.list[id];
-  return texe.list;
+timexe.get=function(id){
+  if(typeof id ==='number') return timexe.list[id];
+  return timexe.list;
 }
 
 /*============================================================================*\
                              Internal functions
 \*============================================================================*/
 // Globals
-texe.nextId=1;
+timexe.nextId=1;
 
 // Constants
 var limit = [
@@ -228,52 +228,52 @@ var fieldName=['year', 'month', 'day', 'hour', 'min', 'sec', 'ms','weekday','yea
 /*============================================================================*\
   Start timer for job
 \*============================================================================*/
-texe._start=function(id){
+timexe._start=function(id){
 
   // Get now
   var now = (new Date).getTime()/1000;   
   var starFromTime=now;
   var delay;
 
-if(typeof texe.list[id]=== 'undefined') console.log("undef : ",id);
+if(typeof timexe.list[id]=== 'undefined') console.log("undef : ",id);
 
   // Set next execution time
-  if(!texe.list[id].timeoutShortened){
+  if(!timexe.list[id].timeoutShortened){
     // To avoid multiple hits and getting out of sync: set time to after last 
     // execution time (do to timing errors)
-    if(typeof texe.list[id].next !== 'undefined')
-      if(starFromTime <= texe.list[id].next) 
-        starFromTime = texe.list[id].next+texe.timeResolution;
+    if(typeof timexe.list[id].next !== 'undefined')
+      if(starFromTime <= timexe.list[id].next) 
+        starFromTime = timexe.list[id].next+timexe.timeResolution;
       
     // get next execution time
-    var result=texe.nextTime(texe.list[id].timex,starFromTime);
+    var result=timexe.nextTime(timexe.list[id].timex,starFromTime);
     if(result.error.length>0){
       return result.error;
     }
 
     if(result.time < now){ 
-      texe.remove(id);
+      timexe.remove(id);
       return "time expression did not produce a valid future time";
     }
     
-    texe.list[id].next=result.time;
+    timexe.list[id].next=result.time;
   }
 
   // Start timer for next execution
-  delay=parseInt((texe.list[id].next-now)*1000);
-  texe.list[id].timeoutShortened=false;
+  delay=parseInt((timexe.list[id].next-now)*1000);
+  timexe.list[id].timeoutShortened=false;
 
   // In some engines, the delay can not be above 32 bit integer
-  if (delay>texe.maxTimerDelay){ 
-    delay=texe.maxTimerDelay;  
+  if (delay>timexe.maxTimerDelay){ 
+    delay=timexe.maxTimerDelay;  
     // Let the _run function know
-    texe.list[id].timeoutShortened=true;
+    timexe.list[id].timeoutShortened=true;
   }
 
-texe.list[id].delay=delay;
-texe.list[id].now=now;
+timexe.list[id].delay=delay;
+timexe.list[id].now=now;
 
-  texe.list[id].timer=setTimeout(texe._run, delay, id);
+  timexe.list[id].timer=setTimeout(timexe._run, delay, id);
 
   return '';
 }
@@ -282,23 +282,23 @@ texe.list[id].now=now;
   Run timed action
   called by settimeout()
 \*============================================================================*/
-texe._run=function(id){
+timexe._run=function(id){
   if(typeof id !== 'number'){
     console.error("Schedule timer fired with null id.");
     return; 
   }
-  if(typeof texe.list[id] !== 'object'){
+  if(typeof timexe.list[id] !== 'object'){
     console.error("Schedule timer fired with invalid id: " + id);
     return; 
   }
 
   // Execute action function
-  if(!texe.list[id].timeoutShortened){
-    texe.list[id].action(texe.list[id].param);
+  if(!timexe.list[id].timeoutShortened){
+    timexe.list[id].action(timexe.list[id].param);
   }
 
   // Restart timer
-  texe._start(id);
+  timexe._start(id);
 }
 
 
@@ -376,7 +376,7 @@ texe._run=function(id){
     every 3th thuesday at 18, execpt in the summer: * * w2 18 & * 21-28 & * !6-8
 
 \*============================================================================*/
-texe.nextTime = function(tex,strict,startfromTime){
+timexe.nextTime = function(tex,strict,startfromTime){
 
   var carry=false;
   var sign=false;
@@ -394,7 +394,7 @@ texe.nextTime = function(tex,strict,startfromTime){
 
   // Add a short delay to avoid small timing errors to generate multiple hits
   // And to allow for execution time
-  ct.setUTCMilliseconds(ct.getUTCMilliseconds() + texe.timeResolution );
+  ct.setUTCMilliseconds(ct.getUTCMilliseconds() + timexe.timeResolution );
 
   var nt=[
      ct.getFullYear()
