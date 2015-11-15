@@ -23,7 +23,7 @@ It seems that execution is defered somewhat during process load.
 To add a timed job every day at noon:
 
 ```javascript
-timexe(”* * * 12”, function(){console.log(“hello - it's noon again”)});
+timexe(”* * * 12”, function(){console.log(“hello - it is noon again”)});
 ```
 
 ## Time expression Syntax
@@ -93,7 +93,7 @@ Returns a result object:
 
 
 ##### timexe.remove(id)
-where id is the value returned from timexeadd
+where id is the value returned from timexe
 
 Returns a result object:
 ```
@@ -105,7 +105,7 @@ Returns a result object:
 
 
 ##### timexe.get([id])
-where the optional id is the value returned from timexeadd
+where the optional id is the value returned from timexe
 
 Returnes either a chronos timer object if id is given, or an array of all active timer objects.
 
@@ -117,7 +117,7 @@ This should be more the the execution time and delays do to load, of the intepre
 
 ##### timexe.maxTimerDelay (integer)
 Maximum run time of a setTimeout call. Some javascripts engines cant handle more then 32 bit = 0x7FFFFFF. thats about 28 days. default is 86400000 = 1 day.
-When this time have elapsed, the timer event are reevaluated.
+When this time have elapsed, the time expression are reevaluated.
 
 
 ## With node JS
