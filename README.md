@@ -154,3 +154,11 @@ var res1=timexe(”* * * 12”, function(){alert(“hello wolrd”)});
 var res2=timexe.remove(res1.id);
 </script>
 ```
+
+####Help
+Please don't hesitate to submit an issue on github! It's the only way to make it better. 
+
+But please be prepared to present a test case.
+
+Contributions of almost any kind are welcome. 
+
