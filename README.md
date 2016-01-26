@@ -12,7 +12,7 @@ Please do not hesitate to add your contribution of any kind to this project
 * Written for both node JS and browser inclusion
 * Time expressions include ranges, sets, timestamps, weekdays, yeardays and more 
 
-Chronos are based on the setTimeout function. 
+Timexe is based on the setTimeout function. 
 
 ### Precission
 At present it seems to have an accuracy within 2 ms in node and up to 25 ms i most browsers.
