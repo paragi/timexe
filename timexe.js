@@ -375,6 +375,9 @@ timexe._run=function(id){
    
     every 3th thuesday at 18, execpt in the summer: * * w2 18 & * 21-28 & * !6-8
 
+
+  This code is optimised for performance rather then readability. 
+  Please make good test cases that coveres all changes made here.
 \*============================================================================*/
 timexe.nextTime = function(tex,strict,startfromTime){
 
@@ -522,8 +525,10 @@ timexe.nextTime = function(tex,strict,startfromTime){
           tp=10; 
           last=7;
           lastdom=new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
-          // Get week day of current next time  
-          nt[10]=((date.getDay()+7)%8+1);
+          // Get week day of current next time 
+          // convert week day 0-6: sunday - saturday to 1-7: monday - sunday 
+          nt[10]=(((date.getDay()+6)%7)+1);         
+          //nt[10]=((date.getDay()+7)%8+1);
 
         // Day of year
         }else if(field[fpc].flags.indexOf('y')>=0){

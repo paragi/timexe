@@ -73,11 +73,11 @@ function test1(){
     Expected result - timezone oftes
 \*============================================================================*/
 var testCase=[
-   ["2015 2 1 21 13 21 123",1400000000,1422825201.123,"Simple",false]
+   ["2015 2 1 21 13 21 123",1400000000,1422821601.123,"Simple",false]
   ,["2013 2 1 21 13 21 123",1400000000,0,"Passed date",false]
-  ,["* !/2 -4 12-16",1400000000,1403784000,"Mutually exclusive flags",false]
-  ,["* * * * * 0",1420066799,1420070400,"Cascading carry",false]
-  ,["* * * * ",1400000000,1400007600,"Only Wildcards = every hour,",false]
+  ,["* !/2 -4 12-16",1400000000,1403776800 ,"Mutually exclusive flags",false]
+  ,["* * * * * 0",1420066799,1420063200,"Cascading carry",false]
+  ,["* * * * ",1400000000,1399996800,"Only Wildcards = every hour,",false]
   ,["* * * * 12",1400000000,1400008320,"Wildcards with one fixed value",false]
   ,["**1 12",1400000000,1401624000,"Wildcards with two fixed value",false]
 
@@ -145,9 +145,8 @@ var testCase=[
   // Debuging cases
   ,["* * * * * /1 ",1400000000,1400000001	,"Every 1 sec = *",false]
   ,["* * * * * /5",1433103355,1433103360,"Every 5 seconds",false]
-  ,["* !1-12",1400000000,0,"Every 1 sec = *",false]
-  ,["* * w1,7 1 0",1447400000,1447549200,"Every 1 sec = *",false]
-  ,["* * w1,7 1 0",1447640000,1448154000,"Every 1 sec = *",false]
+  ,["* !1-12",1400000000,0,"All months exclusive",false]
+  ,["* * w1,7 1 0",1447575482,1447632000,"Pascal's Late sunday error",false]
  
 ];
 
@@ -157,6 +156,8 @@ function test2(){
   var of=now.getTimezoneOffset()*60; // Minutes > seconds
   var html;
   var jt;
+  // Set other then system timezone
+  // process.env.TZ='America/New_York'
   
   // For browser  
   if(typeof process === 'undefined'){
@@ -193,11 +194,14 @@ function test2(){
    }else{
     for(var i=0; i<testCase.length; i++){
       var result=timexe.nextTime(testCase[i][0],testCase[i][4],testCase[i][1]+of);
+      jt=( new Date(result.time*1000));
       console.log(
         i
        ,testCase[i][0]
        ,(new Date(result.time*1000)).toLocaleString() + '.' + ("00" + Math.round(result.time%1*1000)).slice(-3)
-       ,(result.time==testCase[i][2]?'Ok':"Failed:("+result.time+")"+result.error+")")
+       ,(result.time==testCase[i][2] 
+        || result.time==jt.getTimezoneOffset()*60+testCase[i][2])
+        ?'Ok':"Failed:("+result.time+")"+result.error+")"
        ,testCase[i][3]
       );
     }
