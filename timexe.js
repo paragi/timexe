@@ -86,7 +86,7 @@ Examples:
 
 Functions:
 
-timexe(<time expression>, <call back>, <parameter to call back>);
+timexe(<time expression>, <command>, <parameter to call back>);
 
 Add a single shot or reoccurring job
 
@@ -108,7 +108,7 @@ id:	<integer used to identify the timer>
 
   
 \*============================================================================*/
-
+process.versions.timexe='0.9.7 - No late sundays';
 
 /*============================================================================*\
                              Public functions
@@ -125,7 +125,7 @@ timexe.timeResolution=2; // Min 1 ms. This is the minimum time between execution
 timexe.maxTimerDelay=86400000 // some javascripts engines cant handle more then 32 bit 0x7FFFFFF - about 28 days
 
 // Globals
-timexe.list={};
+timexe.list=[];
 
 // Job object
 //    timex:  Time expression
@@ -156,41 +156,27 @@ timexe.add=function(timex,action,param){
   if(typeof action !== 'function') 
     return {"result":"failed","error":"Action is not a function","id":""};
 
-  // Add to job entry to list;
-  timexe.list[timexe.nextId]={}; 
-  timexe.list[timexe.nextId].timex=timex;
-  timexe.list[timexe.nextId].action=action;
-  timexe.list[timexe.nextId].param=param;
-
-  // Define the timeout Shortened flag
-  timexe.list[timexe.nextId].timeoutShortened=false;
+  var id = timexe.list.push({
+     timex: timex
+    ,action: action
+    ,param: param
+    ,timeoutShortened: false // Define the timeout Shortened flag
+  }) -1; 
 
   // Start timed execution
-  var error=timexe._start(timexe.nextId);
+  var error=timexe._start(id);
   if(error.length>0) return {"result":"failed","error":error,"id":""};
 
-  // Add to static file 
-  if(typeof process === 'object' && timexe.file.length>0){
-    // Look for match in file
-    // concatanate file....
-  }
-
-  return {"result":"ok","error":"","id":timexe.nextId++};
+  return {"result":"ok","error":"","id":id};
 } 
-
 
 timexe.remove=function(id){
   if(typeof timexe.list[id] !== "undefined"){
     clearTimeout(timexe.list[id].timer);
     delete timexe.list[id];
-
-    // Delete from static file 
-    if(typeof process === 'object' && timexe.file.length>0){
-      // Look for match in file
-      // splice file....
-    }
+    return {"result":"ok","error":""};
   }
-  return;
+  return {"result":"failed","error":"Timer ID was unknown"};
 }
 
 timexe.get=function(id){
@@ -235,8 +221,6 @@ timexe._start=function(id){
   var starFromTime=now;
   var delay;
 
-if(typeof timexe.list[id]=== 'undefined') console.log("undef : ",id);
-
   // Set next execution time
   if(!timexe.list[id].timeoutShortened){
     // To avoid multiple hits and getting out of sync: set time to after last 
@@ -270,9 +254,8 @@ if(typeof timexe.list[id]=== 'undefined') console.log("undef : ",id);
     timexe.list[id].timeoutShortened=true;
   }
 
-timexe.list[id].delay=delay;
-timexe.list[id].now=now;
-
+  timexe.list[id].delay=delay;
+  timexe.list[id].now=now;
   timexe.list[id].timer=setTimeout(timexe._run, delay, id);
 
   return '';
@@ -375,6 +358,9 @@ timexe._run=function(id){
    
     every 3th thuesday at 18, execpt in the summer: * * w2 18 & * 21-28 & * !6-8
 
+
+  This code is optimised for performance rather then readability. 
+  Please make good test cases that coveres all changes made here.
 \*============================================================================*/
 timexe.nextTime = function(tex,strict,startfromTime){
 
@@ -418,7 +404,7 @@ timexe.nextTime = function(tex,strict,startfromTime){
   // Split into elements og number and other
   var f=tex.match(/(\d+|[^\d])/g);
 
-  // Phase 2: Reassamble fields into object
+  // Phase 2: Reassamble fields into a record
   //------------------------------------------------------------------------*/
   var field=[]; field[0]={};field[0].val=[];field[0].range=[];field[0].flags=new String();;
   var fpc=0;  // Field position counter
@@ -522,8 +508,10 @@ timexe.nextTime = function(tex,strict,startfromTime){
           tp=10; 
           last=7;
           lastdom=new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
-          // Get week day of current next time  
-          nt[10]=((date.getDay()+7)%8+1);
+          // Get week day of current next time 
+          // convert week day 0-6: sunday - saturday to 1-7: monday - sunday 
+          nt[10]=(((date.getDay()+6)%7)+1);         
+          //nt[10]=((date.getDay()+7)%8+1);
 
         // Day of year
         }else if(field[fpc].flags.indexOf('y')>=0){

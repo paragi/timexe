@@ -154,3 +154,6 @@ var res1=timexe(”* * * 12”, function(){alert(“hello wolrd”)});
 var res2=timexe.remove(res1.id);
 </script>
 ```
+
+## Change log
+0.9.8 Minor bugfix. timexe.list made into a regular array.
