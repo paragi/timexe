@@ -12,7 +12,7 @@ Please do not hesitate to add your contribution of any kind to this project
 * Written for both node JS and browser inclusion
 * Time expressions include ranges, sets, timestamps, weekdays, yeardays and more 
 
-Chronos are based on the setTimeout function. 
+Timexe is based on the setTimeout function. 
 
 ### Precission
 At present it seems to have an accuracy within 2 ms in node and up to 25 ms i most browsers.
@@ -156,4 +156,12 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
-0.9.8 Minor bugfix. timexe.list made into a regular array.
+0.9.9 Minor bugfix. timexe.list made into a regular array.
+
+####Help
+Please don't hesitate to submit an issue on github! It's the only way to make it better. 
+
+But please be prepared to present a test case.
+
+Contributions of almost any kind are welcome. 
+
