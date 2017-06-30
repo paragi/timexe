@@ -39,7 +39,7 @@ The epoch timestamp is seconds since 1970-01-01 UTC with fractions of second as 
 
 ##### Field syntax: 	`[!][-]<value>[-<value>]|[,<value>] | /<value> | *`
 ```
-såace : field separator
+space : field separator
 *     : all values. Flags will be ignored.
 !     : not
 /     : every (can not be combined with ! and range)
