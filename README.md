@@ -1,8 +1,5 @@
 # Timexe - Timer and scheduler
-## For node JS or javascript.
-
-### Contributor wanted
-Please do not hesitate to add your contribution of any kind to this project 
+## To be used with node or in a browser
 
 ### Features
 * Improved cron-like syntax (Not compatible)
@@ -42,13 +39,13 @@ The epoch timestamp is seconds since 1970-01-01 UTC with fractions of second as 
 
 ##### Field syntax: 	`[!][-]<value>[-<value>]|[,<value>] | /<value> | *`
 ```
-" " : field separator
-*   : all values. Flags will be ignored.
-!   : not
-/   : every (can not be combined with ! and range)
--   : Negative values are counted back from the maximum value
-a-b : range. both a and b included.
-a,b : set of values
+såace : field separator
+*     : all values. Flags will be ignored.
+!     : not
+/     : every (can not be combined with ! and range)
+-     : Negative values are counted back from the maximum value
+a-b   : range. both a and b included.
+a,b   : set of values
 
 Day field can have the one of the following flags as well
 y: day of year
@@ -64,17 +61,15 @@ Unspecified minor fields are assumed to have the lowest possible value
 
  
 ### Examples:
-| Tables        | Are           |
-| ------------- |:-------------:|
 | Every hour|  * * * *|
 | Every day at noon| * * * 12
 | Every 3th Hour on work days| * * w1-5 /3
-| At a specific epoch time|@1422821601.123  
+| At a specific epoch time|@1422821601.123
 | At a specific time| 2014 5 13 18 53 7 300 230
 | 2th to last day of the month at noon| * * -2 12
 | 3th last day of the year| * * y-3
 | 3 times an hour during work time| * * w1-5 9-17 0,20,40
-| Every morning at 7:30 but not on a weekend| * * !6-7 7 30  
+| Every morning at 7:30 but not on a weekend| * * !6-7 7 30
 | Every 10 minutes in the day time|  * * * 8-18 /10
 
 
