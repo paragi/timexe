@@ -7,9 +7,9 @@
 * Recalculate long running timers, to improve accuracy
 * No dependencies
 * Written for both node JS and browser inclusion
-* Time expressions include ranges, sets, timestamps, weekdays, yeardays and more 
+* Time expressions include ranges, sets, timestamps, weekdays, yeardays and more
 
-Timexe is based on the setTimeout function. 
+Timexe is based on the setTimeout function.
 
 ### Precission
 At present it seems to have an accuracy within 2 ms in node and up to 25 ms i most browsers.
@@ -53,13 +53,13 @@ w: day of week 1-7  (1 is Monday)
 ```
 Unspecified minor fields are assumed to have the lowest possible value
 
-## Note: 
+## Note:
 - Time expression are in local time where as time stamps are in UTC
 - Month and weekday use another offset then the javascript Date function:
-- Month 1 is January 
-- Week day 1-7 starting with Monday 
+- Month 1 is January
+- Week day 1-7 starting with Monday
 
- 
+
 ### Examples:
 | Every hour|  * * * *|
 | Every day at noon| * * * 12
@@ -108,7 +108,7 @@ Returnes either a chronos timer object if id is given, or an array of all active
 ### Settings
 ##### timexe.timeResolution (integer)
 This is the minimum time resolution for an expression. Minimum value is 1 ms. default is 2 ms.
-This should be more the the execution time and delays do to load, of the intepreter. 
+This should be more the the execution time and delays do to load, of the intepreter.
 
 ##### timexe.maxTimerDelay (integer)
 Maximum run time of a setTimeout call. Some javascripts engines cant handle more then 32 bit = 0x7FFFFFF. thats about 28 days. default is 86400000 = 1 day.
@@ -151,12 +151,16 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
+0.9.14 A quick code review. No bugs repported for 2 years. 
+0.9.13 Minor changes to timex.js
+0.9.12 Minor changes to comments and reamne.md
+0.9.11 Minor changes to comments and reamne.md
+0.9.10 Adapted example to runkit
 0.9.9 Minor bugfix. timexe.list made into a regular array.
 
 ####Help
-Please don't hesitate to submit an issue on github! It's the only way to make it better. 
+Please don't hesitate to submit an issue on github! It's the only way to make it better.
 
 But please be prepared to present a test case.
 
-Contributions of almost any kind are welcome. 
-
+Contributions of almost any kind are welcome.
