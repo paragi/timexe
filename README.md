@@ -1,15 +1,14 @@
-# Timexe - Timer and scheduler
-## To be used with node or in a browser
+# Timexe - Cron-like Timer and scheduler
+## Works directly in browser
 
 ### Features
-* Improved cron-like syntax (Not compatible)
 * Milliseconds resolution
+* Improved cron-like syntax
 * Recalculate long running timers, to improve accuracy
 * No dependencies
-* Written for both node JS and browser inclusion
+* Works both for node JS and browser inclusion
 * Time expressions include ranges, sets, timestamps, weekdays, yeardays and more
 
-Timexe is based on the setTimeout function.
 
 ### Precission
 At present it seems to have an accuracy within 2 ms in node and up to 25 ms i most browsers.
@@ -22,6 +21,8 @@ To add a timed job every day at noon:
 ```javascript
 timexe(”* * * 12”, function(){console.log(“hello - it is noon again”)});
 ```
+
+The time expression syntax is like cron, but in reverse order: starting with year, month... (where as cron start with minutes, hours...) plus some enhancements.
 
 ## Time expression Syntax
 ---
@@ -60,17 +61,19 @@ Unspecified minor fields are assumed to have the lowest possible value
 - Week day 1-7 starting with Monday
 
 
-### Examples:
-| Every hour|  * * * *|
-| Every day at noon| * * * 12
-| Every 3th Hour on work days| * * w1-5 /3
-| At a specific epoch time|@1422821601.123
-| At a specific time| 2014 5 13 18 53 7 300 230
-| 2th to last day of the month at noon| * * -2 12
-| 3th last day of the year| * * y-3
-| 3 times an hour during work time| * * w1-5 9-17 0,20,40
-| Every morning at 7:30 but not on a weekend| * * !6-7 7 30
-| Every 10 minutes in the day time|  * * * 8-18 /10
+### Examples og timer expressions:
+| Time  | Time expression |
+| --- |:---|
+| Every hour |   \* \* \* \* |
+| Every day at noon | \* \* \* 12
+| Every 3th Hour on work days | \* \* w1-5 /3
+| Once at a specific epoch time |@1422821601.123
+| Once at a specific time | 2014 5 13 18 53 7 300 230
+| 2th to last day of the month at noon | \* \* -2 12
+| 3th last day of the year | \* \* y-3
+| 3 times an hour during work time | \* \* w1-5 9-17 0,20,40
+| Every morning at 7:30 but not on weekends | \* \* !6-7 7 30
+| Every 10 minutes in the day time |  \* \* \* 8-18 /10
 
 
 ## API
@@ -151,7 +154,8 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
-0.9.14 A quick code review. No bugs repported for 2 years. 
+0.9.15 Documentation update.
+0.9.14 A quick code review. No bugs repported for 2 years.
 0.9.13 Minor changes to timex.js
 0.9.12 Minor changes to comments and reamne.md
 0.9.11 Minor changes to comments and reamne.md
