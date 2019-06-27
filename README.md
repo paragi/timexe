@@ -1,4 +1,4 @@
-# Timexe - A Cron-like Timer and scheduler
+# Timexe - A Cron-like Timer and scheduler witn milliseconds resolution
 ## Also works in a browser
 
 ### Features
@@ -154,7 +154,7 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
-0.9.17 Documentation update.
+0.9.18 Documentation update.
 0.9.14 A quick code review. No bugs repported for 2 years.
 0.9.13 Minor changes to timex.js
 0.9.12 Minor changes to comments and reamne.md
