@@ -463,7 +463,7 @@ timexe.nextTime = function(tex,strict,startfromTime){
     }else if(strict && f[i]!=' ')
       return {
         time: 0,
-        error: `Can't intrepret '${f[i]}' at ${l} \n${tex}\n` + " ".repeat(l) + '^'
+        error: `Can't intrepret '${f[i]}' at ${l} \n${tex}`+ "\n" + " ".repeat(l) + '^'
       } 
 
     // Move field pointer to next position
