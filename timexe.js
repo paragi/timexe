@@ -292,7 +292,7 @@ timexe._run=function(id){
 
   Parameters:
     Time expression: can either be a set of fields with flags or just an epoch timestamp.
-    Strict intrepretation flag: Boolean default to false.
+    Strict interpretation flag: Boolean default to false.
     Timestamp: epoch timestamp to use instead of current time
   
   Return an associative array: 
@@ -462,8 +462,9 @@ timexe.nextTime = function(tex,strict,startfromTime){
 
     // Syntax errors
     }else if(strict && f[i]!=' ')
-      return {"time":0,
-        "error":"Can't intrepret \""+f[i]+'" at '+l + "\n" + tex + "\n" + " ".repeat(l) + '^'
+      return {
+        time: 0,
+        error: `Can't intrepret '${f[i]}' at ${l} \n${tex}\n` + " ".repeat(l) + '^'
       } 
 
     // Move field pointer to next position

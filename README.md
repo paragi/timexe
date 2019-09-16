@@ -151,6 +151,10 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
+0.9.13 Minor changes to timex.js
+0.9.12 Minor changes to comments and reamne.md
+0.9.11 Minor changes to comments and reamne.md
+0.9.10 Adapted example to runkit
 0.9.9 Minor bugfix. timexe.list made into a regular array.
 
 ####Help
