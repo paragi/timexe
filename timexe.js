@@ -172,7 +172,7 @@ timexe.add=function(timex,action,param){
 timexe.remove=function(id){
   if(typeof timexe.list[id] !== "undefined"){
     clearTimeout(timexe.list[id].timer);
-    delete timexe.list[id];
+    timexe.list.splice(id,1);
     return {"result":"ok","error":""};
   }
   return {"result":"failed","error":"Timer ID was unknown"};
