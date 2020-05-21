@@ -1,5 +1,7 @@
 # Timexe - A Cron-like Timer and scheduler witn milliseconds resolution
 ## Also works in a browser
+[![License](https://img.shields.io/npm/l/timexe.svg)](https://github.com/paragi/timexe/blob/master/LICENSE)
+[![downloads per month](http://img.shields.io/npm/dm/timexe.svg)](https://www.npmjs.org/package/timexe)
 
 ### Features
 * Milliseconds resolution
@@ -154,6 +156,11 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
+1.0.0  Fixed test cases:
+   "Cascading carry" failed
+   "Only Wildcards = every hour" failed
+   Documentation 
+0.9.19 Bug fix. failed when "processs" undefined 
 0.9.18 Documentation update.
 0.9.14 A quick code review. No bugs repported for 2 years.
 0.9.13 Minor changes to timex.js
@@ -162,7 +169,7 @@ var res2=timexe.remove(res1.id);
 0.9.10 Adapted example to runkit
 0.9.9 Minor bugfix. timexe.list made into a regular array.
 
-####Help
+#### Help
 Please don't hesitate to submit an issue on github! It's the only way to make it better.
 
 But please be prepared to present a test case.

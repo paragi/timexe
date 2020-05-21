@@ -107,7 +107,8 @@ id:	<integer used to identify the timer>
 
 
 \*============================================================================*/
-process.versions.timexe='0.9.7 - No late sundays';
+if(typeof process !== 'undefined')
+  process.versions.timexe='1.0.0';
 
 /*============================================================================*\
                              Public functions

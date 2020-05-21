@@ -76,8 +76,8 @@ var testCase=[
    ["2015 2 1 21 13 21 123",1400000000,1422821601.123,"Simple",false]
   ,["2013 2 1 21 13 21 123",1400000000,0,"Passed date",false]
   ,["* !/2 -4 12-16",1400000000,1403776800 ,"Mutually exclusive flags",false]
-  ,["* * * * * 0",1420066799,1420063200,"Cascading carry",false]
-  ,["* * * * ",1400000000,1399996800,"Only Wildcards = every hour,",false]
+  ,["* * * * * 0",1420066799,1420066800,"Cascading carry",false]
+  ,["* * * * ",1400000000,1400000400,"Only Wildcards = every hour,",false]
   ,["* * * * 12",1400000000,1400008320,"Wildcards with one fixed value",false]
   ,["**1 12",1400000000,1401624000,"Wildcards with two fixed value",false]
 
