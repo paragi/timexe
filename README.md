@@ -2,6 +2,9 @@
 ## Also works in a browser
 [![License](https://img.shields.io/npm/l/timexe.svg)](https://github.com/paragi/timexe/blob/master/LICENSE)
 [![downloads per month](http://img.shields.io/npm/dm/timexe.svg)](https://www.npmjs.org/package/timexe)
+[![downloads per month](http://img.shields.io/npm/v/timexe.svg)](https://www.npmjs.org/package/timexe)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/paragi/timexe/issues)
+[![Known Vulnerabilities](https://snyk.io/test/github/paragi/timexe/badge.svg)](https://snyk.io/test/github/paragi/timexe)
 
 ### Features
 * Milliseconds resolution
