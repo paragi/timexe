@@ -13,6 +13,7 @@
 * No dependencies
 * Works both for node JS and browser inclusion
 * Time expressions include ranges, sets, timestamps, weekdays, yeardays and more
+* Battle-tested. Very reliable.
 
 
 ### Precission
@@ -159,6 +160,7 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
+1.0.1 Documentation 
 1.0.0  Fixed test cases:
    "Cascading carry" failed
    "Only Wildcards = every hour" failed
