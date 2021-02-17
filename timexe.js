@@ -236,7 +236,7 @@ timexe._start=function(id){
     }
 
     if(result.time < now){
-      timexe.remove(id);
+      //timexe.remove(id);
       return "time expression did not produce a valid future time";
     }
 
