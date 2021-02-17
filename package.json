@@ -1,6 +1,6 @@
 {
   "name": "timexe",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Yet another cron clone – but this one is better :o)  - new improved syntax – milliseconds resolution – both for node JS and browser",
   "main": "timexe.js",
   "scripts": {

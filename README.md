@@ -160,18 +160,34 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
+1.0.3 Bugfix: mismatched ID 
+
+1.0.2 Temp bugfix of mismatched ID.
+
 1.0.1 Documentation 
+
 1.0.0  Fixed test cases:
+
    "Cascading carry" failed
+
    "Only Wildcards = every hour" failed
+
    Documentation 
+
 0.9.19 Bug fix. failed when "processs" undefined 
+
 0.9.18 Documentation update.
+
 0.9.14 A quick code review. No bugs repported for 2 years.
+
 0.9.13 Minor changes to timex.js
+
 0.9.12 Minor changes to comments and reamne.md
+
 0.9.11 Minor changes to comments and reamne.md
+
 0.9.10 Adapted example to runkit
+
 0.9.9 Minor bugfix. timexe.list made into a regular array.
 
 #### Help
