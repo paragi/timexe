@@ -160,7 +160,9 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
-1.0.2 Temp bugfix of mismatchd ID.  Creates a sligt leak. To be fixed properly ASAP
+1.0.3 Bugfix: mismatched ID 
+
+1.0.2 Temp bugfix of mismatched ID.
 
 1.0.1 Documentation 
 
