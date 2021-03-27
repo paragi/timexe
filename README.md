@@ -1,9 +1,9 @@
 # Timexe - A Cron-like Timer and scheduler witn milliseconds resolution
-## Also works in a browser
-[![License](https://img.shields.io/npm/l/timexe.svg)](https://github.com/paragi/timexe/blob/master/LICENSE)
-[![downloads per month](http://img.shields.io/npm/dm/timexe.svg)](https://www.npmjs.org/package/timexe)
+## Also works in a browser 
+[![License](https://img.shields.io/npm/l/timexe.svg)](https://github.com/paragi/timexe/LICENSE)
+[![Downloads per month](http://img.shields.io/npm/dm/timexe.svg)](https://www.npmjs.org/package/timexe)
 [![downloads per month](http://img.shields.io/npm/v/timexe.svg)](https://www.npmjs.org/package/timexe)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/paragi/timexe/issues)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/paragi/timexe/issues)
 [![Known Vulnerabilities](https://snyk.io/test/github/paragi/timexe/badge.svg)](https://snyk.io/test/github/paragi/timexe)
 
 ### Features
@@ -111,7 +111,7 @@ Returns a result object:
 ##### timexe.get([id])
 where the optional id is the value returned from timexe
 
-Returnes either a chronos timer object if id is given, or an array of all active timer objects.
+Returnes either a timexe timer object if id is given, or an array of all active timer objects.
 
 
 ### Settings
