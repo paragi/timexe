@@ -124,8 +124,32 @@ timexe.file='';   // File to store permanent time expressions
 timexe.timeResolution=2; // Min 1 ms. This is the minimum time between execution.
 timexe.maxTimerDelay=86400000 // some javascripts engines cant handle more then 32 bit 0x7FFFFFF - about 28 days
 
+/*============================================================================*\
+                             Internal functions
+\*============================================================================*/
 // Globals
 timexe.list=[];
+last_id=0;
+
+// Constants
+var limit = [
+   [1970, 3000]
+  ,[1, 12]
+  ,[1, 31]
+  ,[0, 23]
+  ,[0, 59]
+  ,[0, 59]
+  ,[0, 999]
+  ,[0, 999]
+  ,[0, 999]
+  ,[0, 999]
+  ,[1, 7]   // Week day
+  ,[1, 366] // Day of year
+  ,[1, 53] // Week number
+];
+
+var fieldName=['year', 'month', 'day', 'hour', 'min', 'sec', 'ms','weekday','yearday','week'];
+
 
 // Job object
 //    timex:  Time expression
@@ -156,12 +180,13 @@ timexe.add=function(timex,action,param){
   if(typeof action !== 'function')
     return {"result":"failed","error":"Action is not a function","id":""};
 
-  var id = timexe.list.push({
+  var id = ++last_id;
+  timexe.list[id]={
      timex: timex
     ,action: action
     ,param: param
     ,timeoutShortened: false // Define the timeout Shortened flag
-  }) -1;
+  };
 
   // Start timed execution
   var error=timexe._start(id);
@@ -173,7 +198,7 @@ timexe.add=function(timex,action,param){
 timexe.remove=function(id){
   if(typeof timexe.list[id] !== "undefined"){
     clearTimeout(timexe.list[id].timer);
-    timexe.list.splice(id,1);
+    delete timexe.list[id];
     return {"result":"ok","error":""};
   }
   return {"result":"failed","error":"Timer ID was unknown"};
@@ -183,31 +208,6 @@ timexe.get=function(id){
   if(typeof id ==='number') return timexe.list[id];
   return timexe.list;
 }
-
-/*============================================================================*\
-                             Internal functions
-\*============================================================================*/
-// Globals
-timexe.nextId=1;
-
-// Constants
-var limit = [
-   [1970, 3000]
-  ,[1, 12]
-  ,[1, 31]
-  ,[0, 23]
-  ,[0, 59]
-  ,[0, 59]
-  ,[0, 999]
-  ,[0, 999]
-  ,[0, 999]
-  ,[0, 999]
-  ,[1, 7]   // Week day
-  ,[1, 366] // Day of year
-  ,[1, 53] // Week number
-];
-
-var fieldName=['year', 'month', 'day', 'hour', 'min', 'sec', 'ms','weekday','yearday','week'];
 
 // start on load
 
