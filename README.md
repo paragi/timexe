@@ -160,6 +160,8 @@ var res2=timexe.remove(res1.id);
 ```
 
 ## Change log
+1.0.5 Added types for typescript
+
 1.0.3 Bugfix: mismatched ID 
 
 1.0.2 Temp bugfix of mismatched ID.
