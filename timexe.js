@@ -688,7 +688,7 @@ timexe.nextTime = function(tex,strict,startfromTime){
       // Regular value and value set
       }else if(field[fpc].val.length>=1){
         // order values
-        if(field[fpc].val.length>1) field[fpc].val.sort();
+        if(field[fpc].val.length>1) field[fpc].val.sort((a,b)=>a-b);
 		    for(i=0; i<field[fpc].val.length; i++){
 			    // Break on hit
 			    if(field[fpc].val[i]==next && field[fpc].flags.indexOf('!')<0) break;
