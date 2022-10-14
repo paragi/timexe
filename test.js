@@ -119,7 +119,7 @@ var testCase=[
   ,["* * y-100,300" ,1400000000,1411344000,"Set of yeardays",false]
   ,["* 3-5 y343 * * ",1400000000,1418083200,"Ignore month in year day",false]
 
-  // Exceeding contraints
+  // Exceeding constraints
   ,["1969 0 0 0 0 0 0 0",1400000000,0,"Under",false]
   ,["* 0 0 0 0 0 0 0",1400000000,0,"Under",false]
   ,["3000 13 32 24 60 60 1000",1400000000,0,"Over",false]
@@ -142,17 +142,18 @@ var testCase=[
   // reentry test
   ,["* 5 ",1400000010,1430438400	,"Unused field preset to low limit (reentry test)",false]
 
-  // Debuging cases
+  // Debugging cases
   ,["* * * * * /1 ",1400000000,1400000001	,"Every 1 sec = *",false]
   ,["* * * * * /5",1433103355,1433103360,"Every 5 seconds",false]
   ,["* !1-12",1400000000,0,"All months exclusive",false]
   ,["* * w1,7 1 0",1447575482,1447632000,"Pascal's Late sunday error",false]
+  ,["* * * * 0,5,10,20,30", 1665788401, 1665788700, "Single digit sorting error", false]
  
 ];
 
 function test2(){
   var now=new Date();
-  // Ajust for local time zone. All but epoc time stamps is local time.
+  // Adjust for local time zone. All but epoch time stamps is local time.
   var of=now.getTimezoneOffset()*60; // Minutes > seconds
   var html;
   var jt;
